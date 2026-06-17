@@ -522,10 +522,11 @@
       margin-left: 2px;
     }
     /* 时间窗：每个 cstep 在自己的 1.5s 区间内高亮 */
-    .dwo-cstep--01, .dwo-cstep--01 .dwo-cstep-idx { animation-delay: 0s; }
-    .dwo-cstep--02, .dwo-cstep--02 .dwo-cstep-idx { animation-delay: -1.5s; }
-    .dwo-cstep--03, .dwo-cstep--03 .dwo-cstep-idx { animation-delay: -3s; }
-    .dwo-cstep--04, .dwo-cstep--04 .dwo-cstep-idx { animation-delay: -4.5s; }
+    /* delay 计算：peak (keyframe 0%) 出现在 t = 6 - |delay|，所以 ② 想 peak at 1.5s 需要 delay = -4.5s */
+    .dwo-cstep--01, .dwo-cstep--01 .dwo-cstep-idx { animation-delay: 0s; }       /* peak t=0 */
+    .dwo-cstep--02, .dwo-cstep--02 .dwo-cstep-idx { animation-delay: -4.5s; }    /* peak t=1.5 */
+    .dwo-cstep--03, .dwo-cstep--03 .dwo-cstep-idx { animation-delay: -3s; }      /* peak t=3 */
+    .dwo-cstep--04, .dwo-cstep--04 .dwo-cstep-idx { animation-delay: -1.5s; }    /* peak t=4.5 */
     @keyframes dwoCstepHighlight {
       0%, 20% { color: var(--ink); }
       25%, 100% { color: var(--ink-mute); }
