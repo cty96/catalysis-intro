@@ -29,10 +29,10 @@
   --font-serif:'Noto Serif SC',serif;
   --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',monospace;
   --ease:cubic-bezier(.2,0,0,1);
-  --fs-9:max(9px,0.95vh);  --fs-10:max(10px,1.06vh); --fs-11:max(11px,1.17vh);
-  --fs-12:max(12px,1.28vh);--fs-13:max(13px,1.39vh);--fs-14:max(14px,1.50vh);
-  --fs-16:max(16px,1.70vh);--fs-18:max(18px,1.92vh);--fs-20:max(20px,2.13vh);
-  --fs-22:max(22px,2.35vh);--fs-24:max(24px,2.57vh);--fs-28:max(28px,3.00vh);--fs-34:max(34px,3.70vh);
+  --fs-9:max(10px,1.06vh); --fs-10:max(11px,1.19vh); --fs-11:max(12px,1.31vh);
+  --fs-12:max(13px,1.43vh);--fs-13:max(15px,1.56vh);--fs-14:max(16px,1.68vh);
+  --fs-16:max(18px,1.90vh);--fs-18:max(20px,2.15vh);--fs-20:max(22px,2.39vh);
+  --fs-22:max(25px,2.63vh);--fs-24:max(27px,2.88vh);--fs-28:max(31px,3.36vh);--fs-34:max(38px,4.14vh);
   --sp-2:max(2px,0.20vh); --sp-3:max(2px,0.28vh); --sp-4:max(3px,0.37vh); --sp-5:max(4px,0.46vh);
   --sp-6:max(5px,0.56vh); --sp-8:max(6px,0.74vh); --sp-10:max(8px,0.93vh); --sp-12:max(9px,1.11vh);
   --sp-14:max(11px,1.30vh);--sp-16:max(12px,1.48vh);--sp-18:max(14px,1.67vh);--sp-20:max(15px,1.85vh);
@@ -66,7 +66,6 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 .mod-head{display:flex; align-items:center; justify-content:space-between; gap:var(--sp-10); margin-bottom:var(--sp-8); flex-shrink:0;}
 .mod-title{font-family:var(--font-serif); font-size:var(--fs-18); font-weight:600; color:var(--ink);
   letter-spacing:.03em; display:inline-flex; align-items:center; gap:var(--sp-8); line-height:1.1;}
-.mod-title::before{content:''; width:3px; height:0.92em; background:var(--vermilion); border-radius:1px; flex-shrink:0;}
 .badge{font-family:var(--font-mono); font-size:var(--fs-10); letter-spacing:.1em; color:var(--vermilion);
   padding:var(--sp-3) var(--sp-8); border:1px solid var(--vermilion-3); background:var(--vermilion-1); border-radius:2px; white-space:nowrap; flex-shrink:0;}
 
@@ -77,8 +76,8 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
   padding:var(--sp-14) var(--sp-14); display:flex; flex-direction:column; justify-content:space-between; gap:var(--sp-10); min-width:0; position:relative; overflow:hidden;}
 .metric::before{content:''; position:absolute; left:0; top:0; width:100%; height:2px; background:linear-gradient(90deg,var(--vermilion),transparent);}
 .metric-head{display:flex; align-items:center; justify-content:space-between; gap:var(--sp-6);}
-.metric-label{font-family:var(--font-mono); font-size:var(--fs-10); letter-spacing:.06em; text-transform:uppercase; color:var(--ink-mute); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.metric-head .ic{color:var(--vermilion); font-size:var(--fs-16); flex-shrink:0;}
+.metric-label{font-family:var(--font-mono); font-size:var(--fs-12); letter-spacing:.06em; text-transform:uppercase; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.metric-head .ic{color:var(--vermilion); font-size:var(--fs-20); flex-shrink:0;}
 .metric-value{font-family:var(--font-mono); font-size:var(--fs-34); font-weight:500; color:var(--ink); letter-spacing:-.02em; line-height:1; font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:var(--sp-2);}
 .metric-value.up{color:var(--success-deep);}
 .metric-value .unit{font-size:var(--fs-12); font-weight:500; color:var(--ink-mute); letter-spacing:0;}
@@ -94,8 +93,8 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 .loop{flex:1; min-height:0; padding:var(--sp-16) var(--sp-18); display:flex; align-items:center;}
 .loop-flow{width:100%; display:flex; align-items:flex-start; padding:0 var(--sp-4);}
 .lnode{flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-8); text-align:center; min-width:0;}
-.lcircle{position:relative; width:max(50px,5.2vh); height:max(50px,5.2vh); border-radius:50%;
-  border:1px solid var(--rule); background:var(--paper); display:flex; align-items:center; justify-content:center; color:var(--ink-soft); font-size:var(--fs-20);
+.lcircle{position:relative; width:max(56px,5.8vh); height:max(56px,5.8vh); border-radius:50%;
+  border:1px solid var(--rule); background:var(--paper); display:flex; align-items:center; justify-content:center; color:var(--ink-soft); font-size:var(--fs-24);
   animation:flowNode 5s ease-in-out infinite; animation-delay:var(--d,0s);}
 .lcircle::after{content:''; position:absolute; inset:-5px; border-radius:50%; border:1px solid var(--vermilion); opacity:0;
   animation:flowRing 5s ease-out infinite; animation-delay:var(--d,0s);}
@@ -114,10 +113,10 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 /* ════════ Why（左栏 · 中 · icon 与文字垂直布局）════════ */
 .why-module{flex:1.7; min-height:0;}
 .why-grid{flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:var(--sp-10);}
-.why-card{background:linear-gradient(150deg, color-mix(in srgb, var(--vermilion-3) 22%, var(--paper-cool)) 0%, var(--paper-cool) 55%); border:1px solid var(--rule); border-radius:2px;
+.why-card{position:relative; background:linear-gradient(150deg, color-mix(in srgb, var(--vermilion-3) 22%, var(--paper-cool)) 0%, var(--paper-cool) 55%); border:1px solid var(--rule); border-radius:2px;
   padding:var(--sp-16) var(--sp-16); display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; gap:var(--sp-8); min-width:0;}
-.why-ic{flex-shrink:0; width:max(42px,4.4vh); height:max(42px,4.4vh);
-  display:flex; align-items:center; justify-content:center; color:var(--vermilion); font-size:var(--fs-22);}
+.why-ic{flex-shrink:0; width:max(48px,5.0vh); height:max(48px,5.0vh);
+  display:flex; align-items:center; justify-content:center; color:var(--vermilion); font-size:var(--fs-28);}
 .why-tx{display:flex; flex-direction:column; gap:var(--sp-3); min-width:0;}
 .why-title{font-family:var(--font-sans); font-size:var(--fs-16); font-weight:600; color:var(--ink); letter-spacing:.01em;}
 .why-desc{font-family:var(--font-sans); font-size:var(--fs-12); color:var(--ink-mute); line-height:1.45;}
@@ -158,6 +157,28 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 
 @keyframes slideUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 .appear{animation:slideUp .22s var(--ease) both;}
+
+/* ── 增强①：背景蓝图网格（边缘渐隐 · 零发光）── */
+.stage::before{content:''; position:absolute; inset:0; pointer-events:none; z-index:0;
+  background-image:linear-gradient(var(--rule-soft) 1px,transparent 1px),linear-gradient(90deg,var(--rule-soft) 1px,transparent 1px);
+  background-size:34px 34px; opacity:.42;
+  -webkit-mask-image:radial-gradient(125% 105% at 50% 34%,#000 30%,transparent 86%);
+          mask-image:radial-gradient(125% 105% at 50% 34%,#000 30%,transparent 86%);}
+.stage>*{position:relative; z-index:1;}
+
+/* ── 增强②：模块序号 + HUD 对角登记角 ── */
+.mod-no{font-family:var(--font-mono); font-weight:500; font-size:var(--fs-14); color:var(--vermilion-5); letter-spacing:.04em; opacity:.9;}
+.hud::before,.hud::after{content:''; position:absolute; width:max(9px,0.95vh); height:max(9px,0.95vh);
+  border-color:var(--vermilion-4); border-style:solid; pointer-events:none; opacity:.85;}
+.hud::before{top:var(--sp-8); left:var(--sp-8); border-width:1px 0 0 1px;}
+.hud::after{bottom:var(--sp-8); right:var(--sp-8); border-width:0 1px 1px 0;}
+
+/* ── 增强③：KPI 迷你趋势线 ── */
+.spark{position:absolute; left:var(--sp-12); right:var(--sp-14); top:32%; height:30%; opacity:.4; pointer-events:none; z-index:0;}
+.spark svg{width:100%; height:100%; display:block;}
+.spark polyline{fill:none; stroke-width:1.4;}
+.spark .vm{stroke:var(--vermilion-5);} .spark .gd{stroke:var(--success);}
+.metric>*:not(.spark){position:relative; z-index:1;}
 </style>
 </head>
 <body>
@@ -177,9 +198,10 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 
       <!-- 闭环成果 -->
       <div class="module kpi-module appear" style="animation-delay:.05s">
-        <div class="mod-head"><h2 class="mod-title">闭环成果</h2></div>
+        <div class="mod-head"><h2 class="mod-title"><span class="mod-no">01</span>闭环成果</h2></div>
         <section class="kpi">
           <div class="metric">
+            <div class="spark"><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polyline class="gd" vector-effect="non-scaling-stroke" points="0,5 17,9 34,12 50,13 67,19 84,23 100,27"/></svg></div>
             <div class="metric-head"><span class="metric-label">过电位 · η OER</span><span class="ic"><i data-lucide="trending-down"></i></span></div>
             <div>
               <div class="metric-value up">−53<span class="unit">mV</span></div>
@@ -187,6 +209,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
             </div>
           </div>
           <div class="metric">
+            <div class="spark"><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polyline class="vm" vector-effect="non-scaling-stroke" points="0,24 17,18 34,21 50,12 67,15 84,8 100,6"/></svg></div>
             <div class="metric-head"><span class="metric-label">理论节电</span><span class="ic"><i data-lucide="zap"></i></span></div>
             <div>
               <div class="metric-value">≈1.4</div>
@@ -194,6 +217,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
             </div>
           </div>
           <div class="metric">
+            <div class="spark"><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polyline class="vm" vector-effect="non-scaling-stroke" points="0,25 17,19 34,15 50,13 67,12 84,11 100,11"/></svg></div>
             <div class="metric-head"><span class="metric-label">稳定运行</span><span class="ic"><i data-lucide="clock"></i></span></div>
             <div>
               <div class="metric-value">1000<span class="unit">h</span></div>
@@ -201,6 +225,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
             </div>
           </div>
           <div class="metric">
+            <div class="spark"><svg viewBox="0 0 100 30" preserveAspectRatio="none"><polyline class="gd" vector-effect="non-scaling-stroke" points="0,9 17,8 34,10 50,8 67,9 84,8 100,8"/></svg></div>
             <div class="metric-head"><span class="metric-label">活性保持</span><span class="ic"><i data-lucide="shield-check"></i></span></div>
             <div>
               <div class="metric-value up">98.6<span class="unit">%</span></div>
@@ -212,7 +237,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 
       <!-- 价值和挑战 -->
       <div class="module why-module appear" style="animation-delay:.1s">
-        <div class="mod-head"><h2 class="mod-title">价值和挑战</h2></div>
+        <div class="mod-head"><h2 class="mod-title"><span class="mod-no">02</span>价值和挑战</h2></div>
         <div class="why-grid">
           <div class="why-card">
             <span class="why-ic"><i data-lucide="leaf"></i></span>
@@ -235,8 +260,8 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 
       <!-- AI 干湿协同闭环 -->
       <div class="module loop-module appear" style="animation-delay:.15s">
-        <div class="mod-head"><h2 class="mod-title">AI 干湿协同闭环</h2></div>
-        <section class="panel loop">
+        <div class="mod-head"><h2 class="mod-title"><span class="mod-no">03</span>AI 干湿协同闭环</h2></div>
+        <section class="panel loop hud">
           <div class="loop-flow">
             <div class="lnode" style="--d:0s"><div class="lcircle"><i data-lucide="cpu"></i></div><span class="ltag">/01 DRY</span><span class="lname">AI 设计</span></div>
             <span class="lconn"></span>
@@ -255,7 +280,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 
     <!-- 右栏：封闭式合成-测试一体站 -->
     <div class="module station-module appear" style="animation-delay:.12s">
-      <div class="mod-head"><h2 class="mod-title">封闭式合成-测试一体站</h2><span class="badge">OER-L04 ITERATION</span></div>
+      <div class="mod-head"><h2 class="mod-title"><span class="mod-no">04</span>封闭式合成-测试一体站</h2><span class="badge">OER-L04 ITERATION</span></div>
       <section class="panel station">
         <div class="station-view">
           <div id="device3d"></div>
@@ -264,8 +289,11 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
           <span class="mc tl"></span><span class="mc tr"></span><span class="mc bl"></span><span class="mc br"></span>
           <div class="readout">
             <div class="st"><span class="gd"></span>SYSTEM STATE: NOMINAL</div>
-            <div class="v">TEMP: 298.15 K</div>
+            <div class="v">TEMP: <span id="tlT">298.15</span> K</div>
             <div class="v">PRESSURE: 1.0 ATM</div>
+            <div class="v">CELL: <span id="tlV">1.482</span> V</div>
+            <div class="v">J: <span id="tlJ">10.04</span> mA·cm⁻²</div>
+            <div class="v">FLOW: <span id="tlF">2.50</span> mL·min⁻¹</div>
           </div>
         </div>
         <div class="station-foot">
@@ -285,6 +313,17 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
   </div>
 </div>
 <script>lucide.createIcons();</script>
+<script>
+/* 实时遥测（纯前端 · 仅视觉） */
+(function(){
+  const base={tlT:298.15, tlV:1.482, tlJ:10.04, tlF:2.50};
+  const dec ={tlT:2, tlV:3, tlJ:2, tlF:2};
+  const amp ={tlT:.03, tlV:.004, tlJ:.07, tlF:.03};
+  function jit(){ for(const k in base){ const el=document.getElementById(k); if(!el)continue;
+    el.textContent=(base[k]+(Math.random()-.5)*2*amp[k]).toFixed(dec[k]); } }
+  jit(); setInterval(jit, 1400);
+})();
+</script>
 <script type="module">
 /* 封闭式合成-测试一体站 · 纯代码生成（无外部文件，file:// 直接可开）· 蓝点 + 白色结构框线 */
 import * as THREE from 'three';
@@ -373,6 +412,16 @@ import * as THREE from 'three';
 
   const scene=new THREE.Scene();
   scene.add(machine);
+
+  // —— 增强⑤：基准地面网格（随设备）+ 世界坐标 gnomon（固定）——
+  const grid=new THREE.GridHelper(10, 20, new THREE.Color('#5b88c2'), new THREE.Color('#34404f'));
+  grid.position.y=-H/2-0.03; grid.material.transparent=true; grid.material.opacity=.62; grid.material.depthWrite=false;
+  machine.add(grid);
+  const go=new THREE.Vector3(-W/2-0.25,-H/2,D/2+0.25);
+  for(const dir of [[0.85,0,0],[0,0.85,0],[0,0,0.85]]){
+    const p2=go.clone().add(new THREE.Vector3(dir[0],dir[1],dir[2]));
+    scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([go,p2]), edgeDim));
+  }
 
   let w=container.clientWidth||800, h=container.clientHeight||600;
   const F=7.3; let aspect=w/h;
