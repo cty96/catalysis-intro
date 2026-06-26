@@ -48,9 +48,9 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 
 /* ── 自适应：填满视口 · 标题 / 主体两栏 ── */
 .stage{position:fixed; top:0; left:0; width:100vw; height:100vh; background:var(--paper); overflow:hidden;
-  display:grid; grid-template-rows:auto 1fr; gap:var(--sp-18); padding:0 max(42px,4.3vw) max(34px,3.8vh);}
+  display:grid; grid-template-rows:auto 1fr; gap:var(--sp-18); padding:0 max(42px,4.3vw) max(46px,5.1vh);}
 .main{display:grid; grid-template-columns:1.25fr 1fr; gap:var(--sp-14); min-height:0;}
-.col-left{display:flex; flex-direction:column; gap:var(--sp-18); min-height:0;}
+.col-left{display:flex; flex-direction:column; gap:var(--sp-24); min-height:0;}
 
 .panel{position:relative; background:var(--paper-cool); border:1px solid var(--rule); border-radius:2px;}
 
@@ -70,7 +70,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
   padding:var(--sp-3) var(--sp-8); border:1px solid var(--vermilion-3); background:var(--vermilion-1); border-radius:2px; white-space:nowrap; flex-shrink:0;}
 
 /* ════════ KPI（左栏 · 顶 · 高度缩窄）════════ */
-.kpi-module{flex:0.72; min-height:0;}
+.kpi-module{flex:0.9; min-height:0;}
 .kpi{flex:1; min-height:0; display:grid; grid-template-columns:repeat(4,1fr); gap:var(--sp-10);}
 .metric{background:linear-gradient(150deg, color-mix(in srgb, var(--vermilion-3) 30%, var(--paper-cool)) 0%, var(--paper-cool) 58%); border:1px solid var(--rule); border-radius:2px;
   padding:var(--sp-14) var(--sp-14); display:flex; flex-direction:column; justify-content:center; gap:var(--sp-12); min-width:0; position:relative; overflow:hidden;}
@@ -112,16 +112,21 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 @keyframes dash{to{background-position:9px 0;}}
 
 /* ════════ Why（左栏 · 中 · icon 与文字垂直布局）════════ */
-.why-module{flex:1.5; min-height:0;}
-.why-grid{flex:1; min-height:0; display:grid; grid-template-columns:repeat(2, minmax(0, .88fr)); grid-template-rows:1fr 1fr; gap:var(--sp-10); justify-content:center;}
-.why-card{position:relative; background:linear-gradient(150deg, color-mix(in srgb, var(--vermilion-3) 30%, var(--paper-cool)) 0%, var(--paper-cool) 58%); border:1px solid var(--rule); border-radius:2px;
-  padding:var(--sp-16) var(--sp-16); display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:var(--sp-5); min-width:0;}
+.why-module{flex:1.25; min-height:0;}
+.why-panel{flex:1; min-height:0; padding:var(--sp-16); display:flex; flex-direction:column;
+  background:linear-gradient(150deg, color-mix(in srgb, var(--vermilion-3) 24%, var(--paper-cool)) 0%, var(--paper-cool) 62%);
+  border:1px solid var(--rule); border-radius:2px;}
+.why-grid{flex:1; min-height:0; display:grid; grid-template-columns:repeat(4,1fr); align-items:center;}
+.why-card{position:relative; min-width:0; height:100%; padding:var(--sp-10) var(--sp-20);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:var(--sp-6); text-align:center;}
+.why-card:not(:last-child)::after{content:''; position:absolute; right:0; top:50%; width:1px; height:42%;
+  transform:translateY(-50%); background:linear-gradient(180deg,transparent,var(--vermilion-4),transparent); opacity:.62;}
 .why-ic{flex-shrink:0; width:max(48px,5.0vh); height:max(48px,5.0vh);
   display:flex; align-items:center; justify-content:center; color:var(--vermilion-7); font-size:var(--fs-28);
   filter:drop-shadow(0 0 9px color-mix(in srgb, var(--vermilion-6) 50%, transparent));}
-.why-tx{display:flex; flex-direction:column; gap:var(--sp-3); min-width:0;}
+.why-tx{display:flex; flex-direction:column; align-items:center; gap:var(--sp-5); min-width:0;}
 .why-title{font-family:var(--font-sans); font-size:var(--fs-18); font-weight:600; color:var(--ink); letter-spacing:.01em;}
-.why-desc{font-family:var(--font-sans); font-size:var(--fs-13); color:var(--ink-mute); line-height:1.45;}
+.why-desc{font-family:var(--font-sans); font-size:var(--fs-13); color:var(--ink-mute); line-height:1.45; max-width:16em;}
 .why-desc sup{font-size:.7em;}
 
 /* ════════ 站点（右栏 · 视频）════════ */
@@ -224,24 +229,26 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
       <!-- 价值和挑战 -->
       <div class="module why-module appear" style="animation-delay:.1s">
         <div class="mod-head"><h2 class="mod-title">价值和挑战</h2></div>
-        <div class="why-grid">
-          <div class="why-card">
-            <span class="why-ic"><i data-lucide="leaf"></i></span>
-            <div class="why-tx"><span class="why-title">绿色制氢核心技术</span><span class="why-desc">OER 性能决定电解水制氢效率与成本，是产业链关键瓶颈。</span></div>
+        <section class="why-panel">
+          <div class="why-grid">
+            <div class="why-card">
+              <span class="why-ic"><i data-lucide="leaf"></i></span>
+              <div class="why-tx"><span class="why-title">绿色制氢核心技术</span><span class="why-desc">OER 性能决定电解水制氢效率与成本，是产业链关键瓶颈。</span></div>
+            </div>
+            <div class="why-card">
+              <span class="why-ic"><i data-lucide="share-2"></i></span>
+              <div class="why-tx"><span class="why-title">科学空间巨大</span><span class="why-desc">材料组合空间超 10<sup>15</sup>，传统经验试错方法难以覆盖。</span></div>
+            </div>
+            <div class="why-card">
+              <span class="why-ic"><i data-lucide="flask-conical"></i></span>
+              <div class="why-tx"><span class="why-title">实验成本高</span><span class="why-desc">合成—测试链条漫长复杂，单次物理实验成本高昂且耗时。</span></div>
+            </div>
+            <div class="why-card">
+              <span class="why-ic"><i data-lucide="database"></i></span>
+              <div class="why-tx"><span class="why-title">数据极度稀缺</span><span class="why-desc">高质量、标准化电化学数据稀缺，难以支撑底层模型训练。</span></div>
+            </div>
           </div>
-          <div class="why-card">
-            <span class="why-ic"><i data-lucide="share-2"></i></span>
-            <div class="why-tx"><span class="why-title">科学空间巨大</span><span class="why-desc">材料组合空间超 10<sup>15</sup>，传统经验试错方法难以覆盖。</span></div>
-          </div>
-          <div class="why-card">
-            <span class="why-ic"><i data-lucide="flask-conical"></i></span>
-            <div class="why-tx"><span class="why-title">实验成本高</span><span class="why-desc">合成—测试链条漫长复杂，单次物理实验成本高昂且耗时。</span></div>
-          </div>
-          <div class="why-card">
-            <span class="why-ic"><i data-lucide="database"></i></span>
-            <div class="why-tx"><span class="why-title">数据极度稀缺</span><span class="why-desc">高质量、标准化电化学数据稀缺，难以支撑底层模型训练。</span></div>
-          </div>
-        </div>
+        </section>
       </div>
 
       <!-- AI 干湿协同闭环 -->
