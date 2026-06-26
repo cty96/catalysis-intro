@@ -50,7 +50,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 .stage{position:fixed; top:0; left:0; width:100vw; height:100vh; background:var(--paper); overflow:hidden;
   display:grid; grid-template-rows:auto 1fr; gap:var(--sp-18); padding:0 max(42px,4.3vw) max(34px,3.8vh);}
 .main{display:grid; grid-template-columns:1.25fr 1fr; gap:var(--sp-14); min-height:0;}
-.col-left{display:flex; flex-direction:column; gap:var(--sp-18); min-height:0;}
+.col-left{display:flex; flex-direction:column; gap:var(--sp-24); min-height:0;}
 
 .panel{position:relative; background:var(--paper-cool); border:1px solid var(--rule); border-radius:2px;}
 
@@ -112,11 +112,11 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 @keyframes dash{to{background-position:9px 0;}}
 
 /* ════════ Why（左栏 · 中 · icon 与文字垂直布局）════════ */
-.why-module{flex:1.5; min-height:0;}
+.why-module{flex:1.28; min-height:0;}
 .why-grid{flex:1; min-height:0; display:grid; grid-template-columns:repeat(2, minmax(0, .88fr)); grid-template-rows:1fr 1fr; gap:var(--sp-10); justify-content:center;}
 .why-card{position:relative; background:linear-gradient(150deg, color-mix(in srgb, var(--vermilion-3) 30%, var(--paper-cool)) 0%, var(--paper-cool) 58%); border:1px solid var(--rule); border-radius:2px;
-  padding:var(--sp-16) var(--sp-16); display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:var(--sp-5); min-width:0;}
-.why-ic{flex-shrink:0; width:max(48px,5.0vh); height:max(48px,5.0vh);
+  padding:var(--sp-12) var(--sp-14); display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:var(--sp-4); min-width:0;}
+.why-ic{flex-shrink:0; width:max(44px,4.6vh); height:max(44px,4.6vh);
   display:flex; align-items:center; justify-content:center; color:var(--vermilion-7); font-size:var(--fs-28);
   filter:drop-shadow(0 0 9px color-mix(in srgb, var(--vermilion-6) 50%, transparent));}
 .why-tx{display:flex; flex-direction:column; gap:var(--sp-3); min-width:0;}
