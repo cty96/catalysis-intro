@@ -63,7 +63,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 
 /* ── 统一模块标题（衬线 · 卡片外 · 朱砂竖标）── */
 .module{display:flex; flex-direction:column; min-height:0;}
-.mod-head{display:flex; align-items:center; justify-content:space-between; gap:var(--sp-10); margin:var(--sp-6) 0 var(--sp-14); flex-shrink:0;}
+.mod-head{display:flex; align-items:center; justify-content:space-between; gap:var(--sp-10); margin:var(--sp-6) 0 var(--sp-18); flex-shrink:0;}
 .mod-title{font-family:var(--font-serif); font-size:var(--fs-18); font-weight:600; color:var(--vermilion-deep);
   letter-spacing:.03em; display:inline-flex; align-items:center; gap:var(--sp-8); line-height:1.1;}
 .badge{font-family:var(--font-mono); font-size:var(--fs-10); letter-spacing:.1em; color:var(--vermilion);
@@ -112,12 +112,12 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 @keyframes dash{to{background-position:9px 0;}}
 
 /* ════════ Why（左栏 · 中 · icon 与文字垂直布局）════════ */
-.why-module{flex:1.25; min-height:0;}
-.why-panel{flex:1; min-height:0; padding:var(--sp-16); display:flex; flex-direction:column;
+.why-module{flex:1.08; min-height:0;}
+.why-panel{flex:1; min-height:0; padding:var(--sp-14); display:flex; flex-direction:column;
   background:linear-gradient(150deg, color-mix(in srgb, var(--vermilion-3) 24%, var(--paper-cool)) 0%, var(--paper-cool) 62%);
   border:1px solid var(--rule); border-radius:2px;}
 .why-grid{flex:1; min-height:0; display:grid; grid-template-columns:repeat(4,1fr); align-items:center;}
-.why-card{position:relative; min-width:0; height:100%; padding:var(--sp-10) var(--sp-20);
+.why-card{position:relative; min-width:0; height:100%; padding:var(--sp-8) var(--sp-20);
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:var(--sp-6); text-align:center;}
 .why-card:not(:last-child)::after{content:''; position:absolute; right:0; top:50%; width:1px; height:42%;
   transform:translateY(-50%); background:linear-gradient(180deg,transparent,var(--vermilion-4),transparent); opacity:.62;}
