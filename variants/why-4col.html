@@ -20,8 +20,9 @@
   --ink:#f1f5fb; --ink-soft:#c6d0dc; --ink-mute:#99a7b6; --ink-faint:#687482;
   --paper:#080b11; --paper-warm:#141b25; --paper-cool:#0d121a;
   --rule:#344052; --rule-soft:#18202a;
-  --vermilion-1:#17345a; --vermilion-2:#214b82; --vermilion-3:#2f6fc0;
-  --vermilion-4:#3f8be6; --vermilion-5:#5caaff; --vermilion-6:#79c0ff; --vermilion-7:#b8dcff;
+  --vermilion-1:#1e2d42; --vermilion-2:#2a3e5e; --vermilion-3:#385886;
+  --vermilion-4:#4f78b2; --vermilion-5:#6fa3dc; --vermilion-6:#8db9ea; --vermilion-7:#c0dcff;
+  --accent-blue:#8dccff; --accent-blue-soft:#5caaff;
   --vermilion:var(--vermilion-6); --vermilion-soft:var(--vermilion-5);
   --vermilion-bg:var(--vermilion-2); --vermilion-deep:var(--vermilion-7);
   --success:#a4b870; --success-bg:#1d2418; --success-deep:#c0d490;
@@ -58,13 +59,13 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 .title-block{display:flex; flex-direction:column; justify-content:center; gap:var(--sp-8);
   min-height:max(118px,13.5vh); padding:var(--sp-12) var(--sp-4); border-bottom:1px solid var(--rule);}
 .hd-title{font-family:var(--font-serif); font-size:var(--fs-34); font-weight:600; color:var(--ink); line-height:1.1; letter-spacing:.04em;}
-.hd-title em{font-style:normal; color:var(--vermilion);}
+.hd-title em{font-style:normal; color:var(--accent-blue);}
 .hd-sub{font-family:var(--font-sans); font-size:var(--fs-13); color:var(--ink-mute); line-height:1.6; max-width:64em;}
 
 /* ── 统一模块标题（衬线 · 卡片外 · 朱砂竖标）── */
 .module{display:flex; flex-direction:column; min-height:0;}
 .mod-head{display:flex; align-items:center; justify-content:space-between; gap:var(--sp-10); margin:var(--sp-6) 0 var(--sp-18); flex-shrink:0;}
-.mod-title{font-family:var(--font-serif); font-size:var(--fs-18); font-weight:600; color:var(--vermilion-deep);
+.mod-title{font-family:var(--font-serif); font-size:var(--fs-18); font-weight:600; color:var(--accent-blue);
   letter-spacing:.03em; display:inline-flex; align-items:center; gap:var(--sp-8); line-height:1.1;}
 .badge{font-family:var(--font-mono); font-size:var(--fs-10); letter-spacing:.1em; color:var(--vermilion);
   padding:var(--sp-3) var(--sp-8); border:1px solid var(--vermilion-3); background:var(--vermilion-1); border-radius:2px; white-space:nowrap; flex-shrink:0;}
@@ -76,7 +77,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
   padding:var(--sp-14) var(--sp-14); display:flex; flex-direction:column; justify-content:center; gap:var(--sp-12); min-width:0; position:relative; overflow:hidden;}
 .metric-head{display:flex; align-items:center; justify-content:space-between; gap:var(--sp-6);}
 .metric-label{font-family:var(--font-mono); font-size:var(--fs-12); letter-spacing:.06em; text-transform:uppercase; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-.metric-head .ic{color:var(--vermilion-7); font-size:var(--fs-20); flex-shrink:0; filter:drop-shadow(0 0 8px color-mix(in srgb, var(--vermilion-6) 60%, transparent));}
+.metric-head .ic{color:var(--accent-blue); font-size:var(--fs-20); flex-shrink:0; filter:drop-shadow(0 0 8px color-mix(in srgb, var(--accent-blue-soft) 68%, transparent));}
 .metric-value{font-family:var(--font-mono); font-size:max(44px,4.9vh); font-weight:500; color:var(--ink); letter-spacing:-.02em; line-height:1; font-variant-numeric:tabular-nums; display:flex; align-items:baseline; gap:var(--sp-2);}
 .metric-value.up{color:var(--success-deep);}
 .metric-value .unit{font-size:var(--fs-12); font-weight:500; color:var(--ink-mute); letter-spacing:0;}
@@ -94,19 +95,19 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 .loop-flow{width:100%; display:flex; align-items:flex-start; padding:0 var(--sp-4);}
 .lnode{flex:1; display:flex; flex-direction:column; align-items:center; gap:var(--sp-8); text-align:center; min-width:0;}
 .lcircle{position:relative; width:max(56px,5.8vh); height:max(56px,5.8vh); border-radius:50%;
-  border:1px solid var(--rule); background:var(--paper); display:flex; align-items:center; justify-content:center; color:var(--vermilion-7); font-size:var(--fs-24);
-  filter:drop-shadow(0 0 7px color-mix(in srgb, var(--vermilion-6) 42%, transparent));
+  border:1px solid var(--rule); background:var(--paper); display:flex; align-items:center; justify-content:center; color:var(--accent-blue); font-size:var(--fs-24);
+  filter:drop-shadow(0 0 7px color-mix(in srgb, var(--accent-blue-soft) 52%, transparent));
   animation:flowNode 5s ease-in-out infinite; animation-delay:var(--d,0s);}
 .lcircle::after{content:''; position:absolute; inset:-5px; border-radius:50%; border:1px solid var(--vermilion); opacity:0;
   animation:flowRing 5s ease-out infinite; animation-delay:var(--d,0s);}
-@keyframes flowNode{0%,15%{border-color:var(--vermilion-7); color:var(--vermilion-7); background:var(--vermilion-1);} 24%,100%{border-color:var(--rule); color:var(--vermilion-7); background:var(--paper);}}
+@keyframes flowNode{0%,15%{border-color:var(--accent-blue); color:var(--accent-blue); background:var(--vermilion-1);} 24%,100%{border-color:var(--rule); color:var(--accent-blue); background:var(--paper);}}
 @keyframes flowRing{0%{transform:scale(.85); opacity:.7;} 15%{transform:scale(1.35); opacity:0;} 100%{transform:scale(1.35); opacity:0;}}
 .ltag{font-family:var(--font-mono); font-size:var(--fs-10); letter-spacing:.08em; text-transform:uppercase; color:var(--ink-mute);
   animation:flowTag 5s ease-in-out infinite; animation-delay:var(--d,0s);}
-@keyframes flowTag{0%,15%{color:var(--vermilion);}24%,100%{color:var(--ink-mute);}}
+@keyframes flowTag{0%,15%{color:var(--accent-blue);}24%,100%{color:var(--ink-mute);}}
 .lname{font-family:var(--font-sans); font-size:var(--fs-14); font-weight:600; color:var(--ink); white-space:nowrap;
   animation:flowName 5s ease-in-out infinite; animation-delay:var(--d,0s);}
-@keyframes flowName{0%,15%{color:var(--vermilion);}24%,100%{color:var(--ink);}}
+@keyframes flowName{0%,15%{color:var(--accent-blue);}24%,100%{color:var(--ink);}}
 .lconn{flex:0 0 auto; align-self:flex-start; margin-top:max(25px,2.6vh); width:max(22px,2.2vh); height:2px; position:relative;
   background-image:repeating-linear-gradient(90deg,var(--vermilion-5) 0 4px,transparent 4px 9px); background-size:9px 100%; animation:dash 1.4s linear infinite;}
 @keyframes dash{to{background-position:9px 0;}}
@@ -122,8 +123,8 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 .why-card:not(:last-child)::after{content:''; position:absolute; right:0; top:50%; width:1px; height:42%;
   transform:translateY(-50%); background:linear-gradient(180deg,transparent,var(--vermilion-4),transparent); opacity:.62;}
 .why-ic{flex-shrink:0; width:max(48px,5.0vh); height:max(48px,5.0vh);
-  display:flex; align-items:center; justify-content:center; color:var(--vermilion-7); font-size:var(--fs-28);
-  filter:drop-shadow(0 0 9px color-mix(in srgb, var(--vermilion-6) 50%, transparent));}
+  display:flex; align-items:center; justify-content:center; color:var(--accent-blue); font-size:var(--fs-28);
+  filter:drop-shadow(0 0 9px color-mix(in srgb, var(--accent-blue-soft) 62%, transparent));}
 .why-tx{display:flex; flex-direction:column; align-items:center; gap:var(--sp-5); min-width:0;}
 .why-title{font-family:var(--font-sans); font-size:var(--fs-18); font-weight:600; color:var(--ink); letter-spacing:.01em;}
 .why-desc{font-family:var(--font-sans); font-size:var(--fs-13); color:var(--ink-mute); line-height:1.45; max-width:16em;}
@@ -158,7 +159,7 @@ svg.lucide{stroke-width:1.8; width:1em; height:1em;}
 .partner-mark{flex-shrink:0; height:max(44px,4.6vh); width:auto; border:1px solid var(--vermilion-4); background:#fff;
   object-fit:contain; border-radius:2px; padding:max(4px,.5vh) max(8px,.9vh);}
 .partner-tx{display:flex; flex-direction:column; gap:2px; min-width:0;}
-.partner-label{font-family:var(--font-mono); font-size:var(--fs-9); letter-spacing:.18em; text-transform:uppercase; color:var(--vermilion);}
+.partner-label{font-family:var(--font-mono); font-size:var(--fs-9); letter-spacing:.18em; text-transform:uppercase; color:var(--accent-blue);}
 .partner-name{font-family:var(--font-sans); font-size:var(--fs-16); font-weight:600; color:var(--ink); white-space:nowrap;}
 .partner-en{font-family:var(--font-mono); font-size:var(--fs-9); letter-spacing:.04em; color:var(--ink-mute);}
 
