@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电催化实验 · 干湿协同闭环 · Blue Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+} }
+</script>
+<style>
+:root{
+  --bg:#05070b; --blue:#61b9ff; --blue2:#b7dcff; --blue3:#74a9d6; --blue-deep:#0c263f;
+  --bd:rgba(97,185,255,.36); --bd2:rgba(97,185,255,.18); --line:rgba(97,185,255,.68);
+  --tx:#f2f7ff; --tx2:#b7c3cf; --tx3:#738190; --cyan:#83f0ff; --green:#9dd18b;
+  --sans:"Noto Sans SC",system-ui,sans-serif; --serif:"Noto Serif SC",serif; --latin:"EB Garamond",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#000;color:var(--tx);font-family:var(--serif);overflow:hidden}
+body{font-size:max(13px,1.3vh)}
+#stage{position:fixed;inset:0;background:#000}
+#slide{position:fixed;inset:0;width:100vw;height:100vh;overflow:hidden;
+  background:
+    radial-gradient(42% 46% at 88% 6%,rgba(97,185,255,.20),transparent 72%),
+    radial-gradient(36% 40% at 8% 90%,rgba(20,117,204,.18),transparent 74%),
+    linear-gradient(135deg,#05070b,#09111c 48%,#030508)}
+#slide::before{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
+  background-image:linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.020) 1px,transparent 1px);
+  background-size:max(34px,3.45vw) max(34px,3.45vw)}
+#slide::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.38;
+  background:linear-gradient(90deg,transparent 0 6%,rgba(97,185,255,.08) 6.05%,transparent 6.25% 93.6%,rgba(97,185,255,.08) 93.7%,transparent 94%),
+    linear-gradient(180deg,rgba(255,255,255,.05),transparent 16%,transparent 82%,rgba(97,185,255,.06))}
+.wrap{position:absolute;z-index:1;inset:max(22px,2.78vh) max(28px,2.82vw) max(18px,2.41vh) max(32px,3.28vw);display:flex;gap:max(18px,2.35vw)}
+.left{flex:1.06;min-width:0;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.kicker{display:flex;align-items:center;gap:14px;color:var(--blue2);font-size:14px;letter-spacing:.06em;font-weight:700}
+.kicker .en{font-family:var(--latin);letter-spacing:.28em;text-transform:uppercase;color:var(--tx2);font-weight:400}
+.title{font-size:max(36px,5.55vh);font-weight:700;line-height:1.06;letter-spacing:.05em;margin:0 0 max(7px,1.1vh);color:#fff;text-shadow:0 2px 24px rgba(97,185,255,.24)}
+.title em{font-style:normal;color:var(--blue2)}
+.subtitle{font-family:var(--sans);font-size:max(13px,1.88vh);color:var(--tx2);letter-spacing:.02em;font-weight:300}
+.metrics{display:flex;gap:max(9px,.86vw);margin-top:0}
+.card{flex:1;text-align:center;border:1px solid var(--bd);border-radius:max(9px,1.5vh);padding:max(10px,1.65vh) max(6px,.5vw) max(9px,1.53vh);
+  background:linear-gradient(180deg,rgba(17,30,44,.92),rgba(5,8,13,.94));
+  box-shadow:inset 0 0 28px rgba(97,185,255,.055),0 12px 28px rgba(0,0,0,.38)}
+.ic{width:max(31px,4.72vh);height:max(31px,4.72vh);border:1.5px solid var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue);margin:0 auto max(5px,.83vh)}
+.ic svg,.sic svg,.wic svg,.mic svg{width:100%;height:100%}
+.lbl{font:500 max(12px,1.74vh) var(--sans);color:var(--tx);letter-spacing:.03em}
+.num{font-family:Georgia,var(--serif);font-weight:700;font-size:max(25px,3.75vh);color:var(--blue2);margin:max(3px,.55vh) 0 max(2px,.42vh);letter-spacing:.01em}
+.num .u{font-size:max(13px,1.95vh);color:var(--blue3)}
+.nt{font:300 max(10px,1.46vh)/1.3 var(--sans);color:var(--tx2)}
+.sechead{font-size:max(14px,2.01vh);color:var(--blue2);font-weight:700;letter-spacing:.04em;margin:0 0 max(8px,1.25vh);display:flex;align-items:center;gap:max(8px,.78vw)}
+.sechead .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--bd),transparent)}
+.why{display:flex}
+.wi{flex:1;text-align:center;padding:max(2px,.28vh) max(10px,1.02vw);border-right:1px solid var(--bd2)}
+.wi:last-child{border-right:0}
+.wic{width:max(28px,4.16vh);height:max(28px,4.16vh);color:var(--blue);margin:0 auto max(6px,.97vh)}
+.wi h3{font:700 max(12px,1.74vh) var(--sans);color:var(--blue2);margin-bottom:max(3px,.55vh)}
+.wi p{font:300 max(11px,1.6vh)/1.5 var(--sans);color:var(--tx2)}
+.wi b{color:var(--blue2);font-weight:600}
+.loop{display:flex;align-items:stretch;position:relative;margin-top:2px}
+.step{flex:1;border:1px solid var(--bd);border-radius:max(8px,1.38vh);padding:max(10px,1.53vh) max(6px,.5vw) max(10px,1.67vh);text-align:center;position:relative;
+  background:linear-gradient(180deg,rgba(17,29,42,.92),rgba(4,7,12,.95))}
+.step-badge{position:absolute;left:max(7px,.7vw);top:max(7px,.97vh);width:max(17px,2.5vh);height:max(17px,2.5vh);border-radius:50%;background:var(--blue2);color:#06101a;font:700 max(10px,1.53vh) Georgia,serif;display:flex;align-items:center;justify-content:center}
+.sic{width:max(23px,3.33vh);height:max(23px,3.33vh);color:var(--blue);margin:max(2px,.28vh) auto max(5px,.83vh)}
+.step .en{font-family:var(--latin);font-size:max(14px,2.08vh);letter-spacing:.08em;color:var(--blue2)}
+.step .cn{font:500 max(12px,1.67vh) var(--sans);color:var(--tx);margin-top:max(2px,.28vh)}
+.step .ds{font:300 max(10px,1.38vh)/1.3 var(--sans);color:var(--tx3);margin-top:max(3px,.42vh)}
+.sar{width:max(16px,1.4vw);flex:0 0 max(16px,1.4vw);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:max(15px,2.22vh)}
+.flcap{text-align:center;color:var(--blue2);font:500 max(12px,1.67vh) var(--sans);letter-spacing:.06em;margin-top:0}
+.flcap::before,.flcap::after,.scap::before,.scap::after{content:"";display:inline-block;width:max(28px,2.65vw);height:1px;background:var(--line);vertical-align:middle;margin:0 max(9px,.94vw)}
+.station{flex:.94;border:1.5px solid rgba(97,185,255,.58);border-radius:max(15px,2.5vh);padding:max(14px,2.22vh) max(15px,1.4vw) max(12px,1.95vh);display:flex;flex-direction:column;
+  background:linear-gradient(145deg,rgba(5,8,13,.58),rgba(12,22,34,.66));
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.035),0 0 56px rgba(97,185,255,.07)}
+.station h2{text-align:center;font-family:var(--serif);font-weight:700;font-size:max(19px,2.91vh);letter-spacing:.04em;color:var(--blue2)}
+.rule{height:1px;background:var(--line);position:relative;margin:max(9px,1.53vh) max(8px,.62vw) max(10px,1.67vh)}
+.rule::before,.rule::after{content:"";position:absolute;top:-2px;width:5px;height:5px;border-radius:50%;background:var(--blue2)}
+.rule::before{left:0}.rule::after{right:0}
+.mframe{flex:1;border-radius:max(10px,1.67vh);position:relative;min-height:0;margin:0 max(2px,.15vw);overflow:hidden;
+  background:radial-gradient(60% 60% at 52% 38%,rgba(97,185,255,.10),transparent 72%),linear-gradient(145deg,#111923,#05070a);
+  border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 0 0 7px #080d13,inset 0 0 0 8px rgba(97,185,255,.20),0 18px 42px rgba(0,0,0,.52)}
+#device3d{position:absolute;inset:0}
+#device3d canvas{display:block}
+.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:500 11px var(--sans);letter-spacing:.08em;color:var(--tx3)}
+.readout{position:absolute;left:max(13px,1.25vw);bottom:max(12px,1.95vh);z-index:3;font:500 max(10px,1.38vh)/1.55 "SF Mono",ui-monospace,monospace;letter-spacing:.06em;color:var(--tx2)}
+.readout .state{display:flex;align-items:center;gap:6px;color:var(--blue2)}
+.readout .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px rgba(131,240,255,.8)}
+.partner{display:flex;align-items:center;gap:max(10px,.94vw);margin:max(11px,1.8vh) max(2px,.15vw) 0;border:1px solid var(--bd);border-radius:max(8px,1.38vh);padding:max(9px,1.38vh) max(10px,.94vw);
+  background:linear-gradient(180deg,rgba(18,30,42,.94),rgba(5,8,13,.96))}
+.partner img{width:max(82px,7.18vw);height:max(38px,5.83vh);object-fit:contain;background:#fff;border-radius:6px;padding:max(4px,.69vh) max(7px,.62vw)}
+.partner-label{font:500 max(10px,1.38vh) var(--sans);letter-spacing:.12em;color:var(--blue)}
+.partner-name{font:700 max(13px,1.95vh) var(--sans);color:var(--tx);margin-top:max(2px,.28vh);white-space:nowrap}
+.scap{text-align:center;color:var(--blue3);font-family:var(--sans);font-size:max(10px,1.53vh);letter-spacing:.12em;margin-top:max(9px,1.53vh)}
+@media(prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(9px);animation:u .58s cubic-bezier(.2,.7,.2,1) forwards}
+  .d1{animation-delay:.04s}.d2{animation-delay:.12s}.d3{animation-delay:.20s}.d4{animation-delay:.30s}.d5{animation-delay:.40s}
+  @keyframes u{to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+<div id="stage"><div id="slide">
+  <div class="wrap">
+    <main class="left">
+      <h1 class="title rv d1">电催化实验 · 干湿协同<em>闭环</em></h1>
+      <p class="subtitle rv d1">以水电解析氧（OER）为场景，验证 AI 在真实科学问题中的假设生成与迭代优化能力</p>
+
+      <section class="metrics rv d2" aria-label="闭环成果">
+        <div class="card"><div class="ic"><i data-lucide="trending-down"></i></div><div class="lbl">过电位</div><div class="num">−53<span class="u">mV</span></div><div class="nt">288.9→235.9 mV ｜ 18%↓</div></div>
+        <div class="card"><div class="ic"><i data-lucide="zap"></i></div><div class="lbl">理论节电</div><div class="num">≈1.4</div><div class="nt">kWh / kg H₂</div></div>
+        <div class="card"><div class="ic"><i data-lucide="clock"></i></div><div class="lbl">稳定运行</div><div class="num">1000<span class="u">h</span></div><div class="nt">高电流连续运行</div></div>
+        <div class="card"><div class="ic"><i data-lucide="shield-check"></i></div><div class="lbl">活性保持</div><div class="num">98.6<span class="u">%</span></div><div class="nt">长期无显著衰减</div></div>
+      </section>
+
+      <div class="sechead rv d3">价值和挑战<span class="ln"></span></div>
+      <section class="why rv d3" aria-label="价值和挑战">
+        <div class="wi"><div class="wic"><i data-lucide="leaf"></i></div><h3>绿色制氢核心</h3><p>OER 性能决定电解水制氢的<b>效率与成本</b></p></div>
+        <div class="wi"><div class="wic"><i data-lucide="network"></i></div><h3>科学空间巨大</h3><p>材料组合空间超 <b>10¹⁵</b>，传统试错难覆盖</p></div>
+        <div class="wi"><div class="wic"><i data-lucide="flask-conical"></i></div><h3>实验成本高</h3><p>合成-测试链条长，<b>单次实验成本高昂</b></p></div>
+        <div class="wi"><div class="wic"><i data-lucide="database"></i></div><h3>数据极度稀缺</h3><p>高质量标准化电化学数据少，难支撑模型训练</p></div>
+      </section>
+
+      <div class="sechead rv d4">AI 干湿协同闭环<span class="ln"></span></div>
+      <section class="loop rv d4" aria-label="AI 干湿协同闭环">
+        <div class="step"><div class="step-badge">1</div><div class="sic"><i data-lucide="cpu"></i></div><div class="en">DRY</div><div class="cn">AI 设计</div><div class="ds">智能配方</div></div>
+        <div class="sar">→</div>
+        <div class="step"><div class="step-badge">2</div><div class="sic"><i data-lucide="flask-conical"></i></div><div class="en">WET</div><div class="cn">自动合成</div><div class="ds">配液·沉积·制电极</div></div>
+        <div class="sar">→</div>
+        <div class="step"><div class="step-badge">3</div><div class="sic"><i data-lucide="activity"></i></div><div class="en">READ</div><div class="cn">自动测试</div><div class="ds">过电位/Tafel/稳定</div></div>
+        <div class="sar">→</div>
+        <div class="step"><div class="step-badge">4</div><div class="sic"><i data-lucide="database"></i></div><div class="en">DATA</div><div class="cn">数据回传</div><div class="ds">结构化记录</div></div>
+        <div class="sar">→</div>
+        <div class="step"><div class="step-badge">5</div><div class="sic"><i data-lucide="sparkles"></i></div><div class="en">ITER</div><div class="cn">模型进化</div><div class="ds">收敛最优配方</div></div>
+      </section>
+      <div class="flcap rv d5">数据驱动下一轮迭代</div>
+    </main>
+
+    <aside class="station rv d2">
+      <h2>封闭式合成-测试一体站</h2>
+      <div class="rule"></div>
+      <div class="mframe">
+        <div id="device3d"></div>
+        <div id="device-loading" class="loading">模型加载中</div>
+        <div class="readout">
+          <div class="state"><span class="dot"></span>系统状态：正常</div>
+          <div>温度：<span id="tlT">298.15</span> K</div>
+          <div>电解槽：<span id="tlV">1.482</span> V</div>
+          <div>电流密度：<span id="tlJ">10.04</span> mA·cm⁻²</div>
+          <div>流速：<span id="tlF">2.50</span> mL·min⁻¹</div>
+        </div>
+      </div>
+      <div class="partner">
+        <img src="上硅所.png" alt="SICCAS">
+        <div>
+          <div class="partner-label">合作机构</div>
+          <div class="partner-name">中国科学院上海硅酸盐研究所</div>
+        </div>
+      </div>
+      <div class="scap">合成 · 沉积 · 电化学测试</div>
+    </aside>
+  </div>
+</div></div>
+<script>
+lucide.createIcons();
+(function(){
+  const base={tlT:298.15,tlV:1.482,tlJ:10.04,tlF:2.50};
+  const dec={tlT:2,tlV:3,tlJ:2,tlF:2};
+  const amp={tlT:.03,tlV:.004,tlJ:.07,tlF:.03};
+  function tick(){for(const k in base){const el=document.getElementById(k); if(el) el.textContent=(base[k]+(Math.random()-.5)*2*amp[k]).toFixed(dec[k]);}}
+  tick(); setInterval(tick,1400);
+})();
+</script>
+<script type="module">
+import * as THREE from "three";
+(function(){
+  const container=document.getElementById("device3d");
+  if(!container) return;
+  document.getElementById("device-loading")?.remove();
+  const blue=new THREE.Color("#61b9ff"), white=new THREE.Color("#eef7ff");
+  const stip=new THREE.ShaderMaterial({
+    uniforms:{u_color:{value:blue.clone()},uYmin:{value:-3},uYmax:{value:3}},
+    vertexShader:"varying float vY;void main(){vec4 wp=modelMatrix*vec4(position,1.0);vY=wp.y;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}",
+    fragmentShader:"uniform vec3 u_color;uniform float uYmin,uYmax;varying float vY;float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}void main(){vec2 sp=gl_FragCoord.xy*.62;float n=hash(floor(sp));float fade=smoothstep(uYmin,uYmax,vY)*.44;if(n<1.0-fade)discard;gl_FragColor=vec4(u_color,1.0);}",
+    transparent:true,side:THREE.DoubleSide,depthWrite:false
+  });
+  const edge=new THREE.LineBasicMaterial({color:white,transparent:true,opacity:.66});
+  const dim=new THREE.LineBasicMaterial({color:white,transparent:true,opacity:.34});
+  const copper=new THREE.LineBasicMaterial({color:new THREE.Color("#70d4ff"),transparent:true,opacity:.88});
+  const sample=new THREE.LineBasicMaterial({color:new THREE.Color("#9dd18b"),transparent:true,opacity:.9});
+  const machine=new THREE.Group();
+  const solid=(geo,x=0,y=0,z=0,mat=edge,p=machine)=>{const g=new THREE.Group();g.add(new THREE.Mesh(geo,stip));g.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo,30),mat));g.position.set(x,y,z);p.add(g);return g;};
+  const bar=(geo,x=0,y=0,z=0,mat=edge,p=machine)=>{const g=new THREE.LineSegments(new THREE.EdgesGeometry(geo,30),mat);g.position.set(x,y,z);p.add(g);return g;};
+  function roundRect(w,h,r){const s=new THREE.Shape(),x=-w/2,y=-h/2;s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s.getPoints(10);}
+  function win(cx,cy,z,w,h,r){const pts=roundRect(w,h,r).map(p=>new THREE.Vector3(p.x+cx,p.y+cy,z));machine.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts),edge));}
+  const W=4.1,H=4.2,D=2.8,zf=D/2,gy=.85;
+  solid(new THREE.BoxGeometry(W,.22,D),0,H/2,0); solid(new THREE.BoxGeometry(W,.12,D),0,-H/2,0);
+  solid(new THREE.BoxGeometry(W*.9,.4,1.2),0,H/2+.2,.52); solid(new THREE.BoxGeometry(W,H,.06),0,0,-D/2);
+  solid(new THREE.BoxGeometry(.06,H,D),-W/2,0,0); solid(new THREE.BoxGeometry(.06,H,D),W/2,0,0);
+  bar(new THREE.BoxGeometry(W,.16,.06),0,H/2-.11,zf); bar(new THREE.BoxGeometry(W,.16,.06),0,-H/2+.11,zf);
+  bar(new THREE.BoxGeometry(.16,H-.4,.06),0,0,zf); win(-W/4,.02,zf+.01,W/2-.55,H-1.25,.55); win(W/4,.02,zf+.01,W/2-.55,H-1.25,.55);
+  solid(new THREE.BoxGeometry(.92,.66,.16),W/2-.62,H/2-.46,zf-.1);
+  solid(new THREE.BoxGeometry(W-.5,.12,D-.5),0,-1.51,.1); bar(new THREE.CylinderGeometry(.3,.3,.16,20),-1,-1.42,0,dim);
+  bar(new THREE.BoxGeometry(W-.3,.18,.16),0,gy,.55); bar(new THREE.BoxGeometry(W-.3,.18,.16),0,gy,-.55);
+  for(const sx of[-1,1]) bar(new THREE.BoxGeometry(.2,.5,1.3),sx*(W/2-.28),gy-.05,0,dim);
+  for(const zr of[.7,0,-.7]) for(const xc of[-1.55,-1,-.45]) bar(new THREE.BoxGeometry(.16,1.9,.16),xc,-.5,zr,edge);
+  solid(new THREE.BoxGeometry(1.7,.16,1.15),1,-1.4,0,dim);
+  for(const zr of[.4,-.4]) for(const xc of[.35,.8,1.25,1.7]) bar(new THREE.CylinderGeometry(.16,.16,.36,18),xc,-1.14,zr,copper);
+  solid(new THREE.BoxGeometry(.32,.46,.32),1.75,-1.05,.62,sample);
+  const head=new THREE.Group(); machine.add(head);
+  bar(new THREE.BoxGeometry(.4,.2,1.25),0,0,0,edge,head); bar(new THREE.BoxGeometry(.46,.3,.46),0,-.16,.45,edge,head);
+  bar(new THREE.BoxGeometry(.32,1.4,.16),0,-.9,.45,edge,head); bar(new THREE.BoxGeometry(.44,.3,.34),0,-1.68,.45,edge,head);
+  for(const dx of[-.1,.1]) bar(new THREE.CylinderGeometry(.028,.028,.45,8),dx,-2.02,.46,edge,head);
+  stip.uniforms.uYmin.value=-H/2-.7; stip.uniforms.uYmax.value=H/2+.7;
+  const scene=new THREE.Scene(); scene.add(machine);
+  const grid=new THREE.GridHelper(10,20,new THREE.Color("#61b9ff"),new THREE.Color("#25384b"));
+  grid.position.y=-H/2-.03; grid.material.transparent=true; grid.material.opacity=.58; grid.material.depthWrite=false; machine.add(grid);
+  let w=container.clientWidth||520,h=container.clientHeight||420,aspect=w/h; const F=7.3;
+  const camera=new THREE.OrthographicCamera(F*aspect/-2,F*aspect/2,F/2,F/-2,.01,100); camera.position.set(-8,5.2,11); camera.lookAt(0,.15,0);
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(devicePixelRatio,2)); renderer.setSize(w,h); container.appendChild(renderer.domElement);
+  const clock=new THREE.Clock();
+  function animate(){requestAnimationFrame(animate);const t=clock.getElapsedTime();machine.rotation.y=Math.sin(t*.16)*.13;head.position.set(.85+Math.sin(t*.5)*.8,gy,0);renderer.render(scene,camera);}
+  animate();
+  function resize(){w=container.clientWidth;h=container.clientHeight;if(!w||!h)return;aspect=w/h;camera.left=F*aspect/-2;camera.right=F*aspect/2;camera.top=F/2;camera.bottom=F/-2;camera.updateProjectionMatrix();renderer.setSize(w,h);}
+  new ResizeObserver(resize).observe(container); addEventListener("resize",resize);
+})();
+</script>
+</body>
+</html>
